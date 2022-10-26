@@ -13,13 +13,14 @@ app.use(cors());
 //gives us access to use request.body in order to get json data
 app.use(express.json());
 
-app.use(express.static(path.resolve(__dirname, "./dist")));
+app.use(express.static(path.resolve(__dirname, "/dist")));
 
 ///Route to get all todos
 app.get("/todos", async (req, res) => {
     const query = "SELECT * FROM todo";
     db.query(query)
       .then(response => {
+        res.status(200);
         res.json(response.rows);
       })
   });
@@ -31,8 +32,26 @@ app.post("/todos", async (req, res) => {
     const values = [description];
     db.query(query, values)
       .then(response => {
+        res.status(200);
         res.json(response.rows[0]);
       })
+});
+
+//Route for deleting todo
+app.delete("/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  const query = "DELETE FROM todo WHERE todo_id = $1"
+  const values = [id];
+  db.query(query, values)
+    .then(response => {
+      res.status(200);
+      res.json('Todo deleted')
+    })
+  // const deleteTodo = await db.query(
+  //   "DELETE FROM todo WHERE todo_id = $1",
+  //   [id]
+  // );
+  // res.json('Todo deleted')
 });
 
 //express allows us to quickly create  server from node.js
