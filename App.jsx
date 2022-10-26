@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import InputTodo from './components/inputTodo';
+import ListTodo from './components/listTodo';
 
 const App = () => {
     return (
-        <h1>My Daily Todo H1</h1>
+        <div className='container'>
+            <InputTodo/>
+            <ListTodo/>
+        </div>
     )
 }
 
