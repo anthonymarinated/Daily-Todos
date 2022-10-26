@@ -1,0 +1,27 @@
+{
+  "name": "daily-todos",
+  "version": "1.0.0",
+  "description": "tracking what i gotta do",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonymarinated/Daily-Todos.git"
+  },
+  "author": "anthony marin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonymarinated/Daily-Todos/issues"
+  },
+  "homepage": "https://github.com/anthonymarinated/Daily-Todos#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
