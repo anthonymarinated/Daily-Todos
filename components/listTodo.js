@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import EditTodo from "./EditTodo";
 
 export default function ListTodo(){
     const [todos, setTodos] = useState([]);
@@ -18,18 +19,22 @@ export default function ListTodo(){
             const deleteTodo = await fetch(`http://localhost:3000/todos/${id}`, {
                 method: 'DELETE'
             });
-            setTodos(todos.filter(todo => todo.todo_id !== id))
+            setTodos(todos.filter(todo => todo.todo_id !== id)); 
+            //use filter method on todos 
+            //if the todo todo_id does not equal to the todo id that was deleted 
+            //then return an array of all todos except for the todo that was deleted
         } catch (err) {
             console.error(err.message);
         }
     }
+
     useEffect(() => {
         getTodos();
     },[])
-    console.log(todos);
+    // console.log(todos);
 
     return (
-        <div>
+        <div className="mt-5">
         <table className="table">
              <thead>
                 <tr>
@@ -39,16 +44,11 @@ export default function ListTodo(){
                 </tr>
             </thead>
             <tbody>
-                {/* <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr> */}
                 {
                     todos.map(todo => (
                         <tr key={todo.todo_id}>
                             <td>{todo.description}</td>
-                            <td>Edit</td>
+                            <td><EditTodo todo={todo}/></td>
                             <td><button 
                                     className="btn btn-danger"
                                     onClick={() => deleteTodo(todo.todo_id)}
@@ -61,11 +61,6 @@ export default function ListTodo(){
                 }
             </tbody>
         </table>
-            {/* <ul>
-                    {
-                        todos.map(todo => <li key={todo.todo_id}>{todo.todo_id}, {todo.description}</li>)
-                    }
-            </ul> */}
         </div>
     )
 }

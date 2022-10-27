@@ -6,6 +6,5 @@ import { render } from 'react-dom';
 // ReactDOM.render(<App/>, document.getElementById('root'));
 
 render(
-    <App/>,
-    document.getElementById('root')
+    <App/>, document.getElementById('root')
 )

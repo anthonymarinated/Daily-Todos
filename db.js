@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { Pool } = require('pg'); //pg is there to connect our database with our server
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -14,3 +14,5 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 };
+
+//CRUD operations only occur in the database, not on the server

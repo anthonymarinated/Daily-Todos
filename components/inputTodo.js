@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 
-const inputTodo = () => {
+const InputTodo = () => {
     const [ description, setDescription ] = useState("")
+
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
@@ -12,11 +13,12 @@ const inputTodo = () => {
                 body: JSON.stringify(body)
             });
             console.log(response);
-            window.location = "/";
+            window.location = "/"; //redirects to "http://localhost:8080/"
         } catch (err) {
             console.error(err.message);
         }
     }
+    
     return (
         <div>
             <h1 className="text-center mt-5">Todo List</h1>
@@ -28,9 +30,9 @@ const inputTodo = () => {
                 />
                 <button className="btn btn-success">Add</button>
             </form>
-            <p>{description}</p>
+            {/* <p>{description}</p> */}
         </div>
     )
 }
 
-export default inputTodo;
+export default InputTodo;
