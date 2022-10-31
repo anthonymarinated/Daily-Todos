@@ -21,7 +21,9 @@ const InputTodo = () => {
     
     return (
         <div>
+            <div id="appheader">
             <h1 className="text-center mt-5">Todo List</h1>
+            </div>
             <form className="d-flex mt-5" onSubmit={onSubmitForm}>
                 <input type="text" 
                     className="form-control" 
@@ -30,7 +32,6 @@ const InputTodo = () => {
                 />
                 <button className="btn btn-success">Add</button>
             </form>
-            {/* <p>{description}</p> */}
         </div>
     )
 }

@@ -100,6 +100,9 @@ app.get("/", (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "./index.html"));
 });
 
+app.use('*', (req, res) => res.status(404).sendFile(path.join(__dirname, '404.html')));
+app.use((req, res) => res.status(404).json("Request sent to unknown page"));
+
 //Error handling
 app.use((err, req, res, next) => {
   const defaultErr = {

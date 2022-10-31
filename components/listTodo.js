@@ -21,7 +21,7 @@ export default function ListTodo(){
             });
             setTodos(todos.filter(todo => todo.todo_id !== id)); 
             //use filter method on todos 
-            //if the todo todo_id does not equal to the todo id that was deleted 
+            //if the todo.todo_id does not equal to the todo id that was deleted 
             //then return an array of all todos except for the todo that was deleted
         } catch (err) {
             console.error(err.message);
@@ -35,7 +35,7 @@ export default function ListTodo(){
 
     return (
         <div className="mt-5">
-        <table className="table">
+        <table className="table" id="todo">
              <thead>
                 <tr>
                     <th>Description</th>
