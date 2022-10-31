@@ -1,0 +1,35 @@
+.mojo{
+    color: green;
+}
+
+.coding{
+    color:yellow;
+}
+
+td{
+    color: purple;
+}
+
+#todo{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#todo td, #todo th {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  #todo tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #todo tr:hover {background-color: #ddd;}
+  
+  #todo th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #20469e;
+    color: white;
+  }

@@ -4,6 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 const EditTodo = ({ todo }) => {
     // console.log(todo);
     const [description, setDescription] = useState(todo.description);
+
     const updateDescription = async (e) => {
         e.preventDefault();
         try {
@@ -18,6 +19,7 @@ const EditTodo = ({ todo }) => {
             console.error(err.message);
         }
     }
+
     return (
         <div>
             <button 
@@ -30,7 +32,7 @@ const EditTodo = ({ todo }) => {
             Edit
             </button>
 
-            {/* give the id the value of todo_id in order to make ever edit modal unique to a todo*/}
+            {/* give the id the value of todo_id in order to make every edit modal unique for each todo*/}
             <div class="modal" id={`id${todo.todo_id}`} onClick={() => setDescription(todo.description)}> 
             {/* OnClick function sets description back to origin description if click outside of modal */}
                 <div class="modal-dialog">
