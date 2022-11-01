@@ -5,7 +5,7 @@ const PORT = 3000;
 const cors = require("cors"); //cors allows different domain applications to interact with each other
 const dotenv = require("dotenv");
 dotenv.config();
-
+const todoController = require("./controllers/todoController");
 const db = require("./models/db.js");
 
 //middleware
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // serve static files
-app.use(express.static(path.resolve(__dirname, "/dist")));
+app.use(express.static(path.resolve(__dirname, "../dist")));
 
 //On the client side - whenever we click 'submit', 'edit', or 'delete' buttons,
 //the onClick function sends an HTTP request to my restful API (server), 
@@ -32,14 +32,19 @@ if (process.env.NODE_ENV === "production") {
 }
 
 ///Route to get all todos
-app.get("/todos", async (req, res) => {
-    const query = "SELECT * FROM todo";
-    db.query(query)
-      .then(response => {
-        res.status(200);
-        res.json(response.rows);
-      })
-      .catch(err => console.log(err)); //error handler
+// app.get("/todos",  todoController.getPosts , (req, res) => {
+//   res.status(200).json(res.locals.posts);
+// }
+
+app.get("/todos", todoController.getPosts, (req, res) => {
+    // const query = "SELECT * FROM todo";
+    // db.query(query)
+    //   .then(response => {
+    //     res.status(200);
+    //     res.json(response.rows);
+    //   })
+    //   .catch(err => console.log(err)); //error handler
+    res.status(200).json(res.locals.posts);
 });
 
 //Route to get a specific todo 
