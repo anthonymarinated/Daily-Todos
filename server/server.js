@@ -6,7 +6,7 @@ const cors = require("cors"); //cors allows different domain applications to int
 const dotenv = require("dotenv");
 dotenv.config();
 
-const db = require("./db");
+const db = require("./models/db.js");
 
 //middleware
 app.use(cors());
@@ -27,7 +27,7 @@ app.use(express.static(path.resolve(__dirname, "/dist")));
 
 if (process.env.NODE_ENV === "production") {
   app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "./src/index.html"));
   });
 }
 
@@ -96,9 +96,9 @@ app.delete("/todos/:id", async (req, res) => {
 });
 
 // serve index.html on the route '/'
-app.get("/", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "./index.html"));
-});
+// app.get("/", (req, res) => {
+//   return res.status(200).sendFile(path.join(__dirname, "./index.html"));
+// });
 
 app.use('*', (req, res) => res.status(404).sendFile(path.join(__dirname, '404.html')));
 app.use((req, res) => res.status(404).json("Request sent to unknown page"));

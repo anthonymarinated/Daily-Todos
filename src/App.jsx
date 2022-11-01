@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import InputTodo from './components/inputTodo';
-import ListTodo from './components/listTodo';
-import './src/styles.css';
+import InputTodo from '../components/inputTodo';
+import ListTodo from '../components/listTodo';
+import './styles.css';
 // import './src/style.scss';
 
 const App = () => {

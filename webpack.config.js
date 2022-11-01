@@ -4,7 +4,7 @@ require('dotenv').config()
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    entry: path.join(__dirname, 'index.js'),
+    entry: path.join(__dirname, '/src/index.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'build.js',
@@ -58,7 +58,7 @@ module.exports = {
         plugins: [
             require('autoprefixer'),
             new HWP(
-                { template: path.join(__dirname, 'index.html') }
+                { template: path.join(__dirname, '/src/index.html') }
             )
         ],
 };
