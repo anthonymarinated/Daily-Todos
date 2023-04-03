@@ -32,18 +32,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 ///Route to get all todos
-// app.get("/todos",  todoController.getPosts , (req, res) => {
-//   res.status(200).json(res.locals.posts);
-// }
-
 app.get("/todos", todoController.getPosts, (req, res) => {
-    // const query = "SELECT * FROM todo";
-    // db.query(query)
-    //   .then(response => {
-    //     res.status(200);
-    //     res.json(response.rows);
-    //   })
-    //   .catch(err => console.log(err)); //error handler
     res.status(200).json(res.locals.posts);
 });
 
@@ -61,17 +50,22 @@ app.get("/todos/:id", async (req, res) => {
 });
 
 //Routing for posting a todo 
-app.post("/todos", async (req, res) => {
-    const { description } = req.body;
-    const query = "INSERT INTO todo (description) VALUES($1) RETURNING *";
-    const values = [description];
-    db.query(query, values)
-      .then(response => {
-        res.status(200);
-        res.json(response.rows[0]);
-      })
-      .catch(err => console.log(err));
+
+app.post("/todos", todoController.submitPost, (req, res) => {
+  res.status(200);
 });
+
+// app.post("/todos", async (req, res) => {
+//     const { description } = req.body;
+//     const query = "INSERT INTO todo (description) VALUES($1) RETURNING *";
+//     const values = [description];
+//     db.query(query, values)
+//       .then(response => {
+//         res.status(200);
+//         res.json(response.rows[0]);
+//       })
+//       .catch(err => console.log(err));
+// });
 
 //Route to update todo description 
 app.put("/todos/:id", async (req, res) => {

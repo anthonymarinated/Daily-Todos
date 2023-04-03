@@ -1,5 +1,5 @@
 const path = require('path');
-const HWP = require('html-webpack-plugin');
+const HWP = require('html-webpack-plugin'); //Plugin that simplifies creation of HTML files to server your bundles
 require('dotenv').config()
 
 module.exports = {
