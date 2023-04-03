@@ -50,35 +50,14 @@ app.get("/todos/:id", async (req, res) => {
 });
 
 //Routing for posting a todo 
-
 app.post("/todos", todoController.submitPost, (req, res) => {
   res.status(200);
 });
 
-// app.post("/todos", async (req, res) => {
-//     const { description } = req.body;
-//     const query = "INSERT INTO todo (description) VALUES($1) RETURNING *";
-//     const values = [description];
-//     db.query(query, values)
-//       .then(response => {
-//         res.status(200);
-//         res.json(response.rows[0]);
-//       })
-//       .catch(err => console.log(err));
-// });
-
 //Route to update todo description 
-app.put("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  const { description } = req.body;
-  const query = "UPDATE todo SET description = $1 WHERE todo_id = $2";
-  const values = [description, id];
-  db.query(query, values)
-    .then(response => {
-      res.status(200);
-      res.json('Todo updated');
-    })
-    .catch(err => console.log(err));
+app.put("/todos/:id", todoController.editPost, (req, res) => {
+  res.status(200);
+  res.json('Todo updated');
 });
 
 //Route for deleting todo

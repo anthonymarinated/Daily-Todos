@@ -37,4 +37,21 @@ todoController.submitPost = async (req, res, next) => {
         });
 }
 
+todoController.editPost = async (req, res, next) => {
+    const { id } = req.params;
+    const { description } = req.body;
+    const query = "UPDATE todo SET description = $1 WHERE todo_id = $2";
+    const values = [description, id];
+    db.query(query, values)
+        .then(response => {
+            res.status(200);
+            res.json("Todo updated");
+        })
+        .catch(err => {
+            return next({
+                log: `todoController.editPost: ERROR: ${err}`,
+                message: { err: "todoController.editPost: ERROR: Check error log for details"},                
+            });
+        });
+}
 module.exports = todoController;
