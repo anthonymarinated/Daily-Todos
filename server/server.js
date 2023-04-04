@@ -50,28 +50,14 @@ app.get("/todos/:id", async (req, res) => {
 });
 
 //Routing for posting a todo 
-app.post("/todos", todoController.submitPost, (req, res) => {
-  res.status(200);
-});
+app.post("/todos", todoController.submitPost);
 
 //Route to update todo description 
-app.put("/todos/:id", todoController.editPost, (req, res) => {
-  res.status(200);
-  res.json('Todo updated');
-});
+app.put("/todos/:id", todoController.editPost);
 
 //Route for deleting todo
-app.delete("/todos/:id", async (req, res) => {
-  const { id } = req.params;
-  const query = "DELETE FROM todo WHERE todo_id = $1"
-  const values = [id];
-  db.query(query, values)
-    .then(response => {
-      res.status(200);
-      res.json('Todo deleted')
-    })
-    .catch(err => console.log(err));
-});
+app.delete("/todos/:id", todoController.deletePost);
+
 
 // serve index.html on the route '/'
 // app.get("/", (req, res) => {

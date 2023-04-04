@@ -27,7 +27,6 @@ todoController.submitPost = async (req, res, next) => {
         .then(response => {
             res.status(200);
             res.json(response.rows[0]);
-            return next();
         })
         .catch(err => {
             return next({
@@ -54,4 +53,22 @@ todoController.editPost = async (req, res, next) => {
             });
         });
 }
+
+todoController.deletePost = async (req, res, next) => {
+    const { id } = req.params;
+    const query = "DELETE FROM todo WHERE todo_id = $1";
+    const values = [id];
+    db.query(query, values)
+        .then(response => {
+            res.status(200);
+            res.json('Todo deleted');
+        })
+        .catch(err => {
+            return next({
+                log: `todoController.deletePost: ERROR: ${err}`,
+                message: { err: "todoController.deletePost: ERROR: Check error log for details"},                
+            });
+        });
+}
+
 module.exports = todoController;
